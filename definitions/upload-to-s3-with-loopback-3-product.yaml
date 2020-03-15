@@ -1,0 +1,25 @@
+product: '1.0.0'
+
+info:
+  name: upload-to-s3-with-loopback-3
+  title: "upload-to-s3-with-loopback-3"
+  version: "1.0.0"
+
+apis:
+  'upload-to-s3-with-loopback-3_100':
+    $ref: upload-to-s3-with-loopback-3.yaml
+
+visibility:
+  view:
+    type: public
+  subscribe:
+    type: authenticated
+
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      value: 100/hour
+      hard-limit: false

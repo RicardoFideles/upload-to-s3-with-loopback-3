@@ -1,0 +1,86 @@
+{
+  "name": "Files",
+  "plural": "Files",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Etag": {
+      "type": "string"
+    },
+    "Bucket": {
+      "type": "string"
+    },
+    "filekey": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "upload": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true,
+          "description": "ID of File Object."
+        },
+        {
+          "arg": "req",
+          "type": "object",
+          "required": true,
+          "description": "Resquest Object",
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "data",
+          "type": "object",
+          "root": true,
+          "description": "Returns a object with the details of the uploaded file."
+        }
+      ],
+      "description": "Method for upload files to AWS S3 bucket.",
+      "http": [
+        {
+          "path": "/upload/:id",
+          "verb": "post"
+        }
+      ]
+    },
+    "download": {
+      "accepts": [
+        {
+          "arg": "filekey",
+          "type": "string",
+          "required": true,
+          "description": "The file key from AWS S3 Bucket."
+        }
+      ],
+      "returns": [
+        {
+          "arg": "data",
+          "type": "object",
+          "root": true,
+          "description": "Returns the stream data of the file."
+        }
+      ],
+      "description": "Method for download files from AWS S3 bucket.",
+      "http": [
+        {
+          "path": "/download/:filekey",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}
+
+

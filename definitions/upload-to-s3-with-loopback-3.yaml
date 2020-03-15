@@ -1,0 +1,519 @@
+paths:
+  /Files:
+    post:
+      tags:
+        - Files
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Files.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+    patch:
+      tags:
+        - Files
+      summary: >-
+        Patch an existing model instance or insert a new one into the data
+        source.
+      operationId: Files.patchOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+    put:
+      tags:
+        - Files
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
+      operationId: Files.replaceOrCreate__put_Files
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+    get:
+      tags:
+        - Files
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: Files.find
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields, where, include, order, offset, and limit -
+            must be a JSON-encoded string (`{"where":{"something":"value"}}`). 
+            See
+            https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+            for more details.
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  /Files/replaceOrCreate:
+    post:
+      tags:
+        - Files
+      summary: >-
+        Replace an existing model instance or insert a new one into the data
+        source.
+      operationId: Files.replaceOrCreate__post_Files_replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  /Files/upsertWithWhere:
+    post:
+      tags:
+        - Files
+      summary: >-
+        Update an existing model instance or insert a new one into the data
+        source based on the where criteria.
+      operationId: Files.upsertWithWhere
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  '/Files/{id}/exists':
+    get:
+      tags:
+        - Files
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Files.exists__get_Files_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+        undefined:
+          description: Unknown error
+      deprecated: false
+  '/Files/{id}':
+    head:
+      tags:
+        - Files
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'Files.exists__head_Files_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+        undefined:
+          description: Unknown error
+      deprecated: false
+    get:
+      tags:
+        - Files
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: Files.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields and include - must be a JSON-encoded string
+            ({"something":"value"})
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+    put:
+      tags:
+        - Files
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
+      operationId: 'Files.replaceById__put_Files_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+    delete:
+      tags:
+        - Files
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: Files.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+        undefined:
+          description: Unknown error
+      deprecated: false
+    patch:
+      tags:
+        - Files
+      summary: >-
+        Patch attributes for a model instance and persist it into the data
+        source.
+      operationId: Files.prototype.patchAttributes
+      parameters:
+        - name: id
+          in: path
+          description: Files id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  '/Files/{id}/replace':
+    post:
+      tags:
+        - Files
+      summary: >-
+        Replace attributes for a model instance and persist it into the data
+        source.
+      operationId: 'Files.replaceById__post_Files_{id}_replace'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            description: Model instance data
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  /Files/findOne:
+    get:
+      tags:
+        - Files
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: Files.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: >-
+            Filter defining fields, where, include, order, offset, and limit -
+            must be a JSON-encoded string (`{"where":{"something":"value"}}`). 
+            See
+            https://loopback.io/doc/en/lb3/Querying-data.html#using-stringified-json-in-rest-queries
+            for more details.
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Files'
+        undefined:
+          description: Unknown error
+      deprecated: false
+  /Files/update:
+    post:
+      tags:
+        - Files
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: Files.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            description: An object of model property name/value pairs
+            $ref: '#/definitions/Files'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Information related to the outcome of the operation
+            type: object
+            properties:
+              count:
+                description: The number of instances updated
+                type: number
+                format: double
+        undefined:
+          description: Unknown error
+      deprecated: false
+  /Files/count:
+    get:
+      tags:
+        - Files
+      summary: Count instances of the model matched by where from the data source.
+      operationId: Files.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+        undefined:
+          description: Unknown error
+      deprecated: false
+  '/Files/upload/{id}':
+    post:
+      tags:
+        - Files
+      summary: Method for upload files to AWS S3 bucket.
+      operationId: Files.upload
+      parameters:
+        - name: id
+          in: path
+          description: ID of File Object.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Returns a object with the details of the uploaded file.
+            type: object
+        undefined:
+          description: Unknown error
+      deprecated: false
+  '/Files/download/{filekey}':
+    post:
+      tags:
+        - Files
+      summary: Method for download files from AWS S3 bucket.
+      operationId: Files.download
+      parameters:
+        - name: filekey
+          in: path
+          description: The file key from AWS S3 Bucket.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: Returns the stream data of the file.
+            type: object
+        undefined:
+          description: Unknown error
+      deprecated: false
+definitions:
+  Files:
+    properties:
+      Etag:
+        type: string
+      Bucket:
+        type: string
+      filekey:
+        type: string
+      id:
+        $ref: '#/definitions/ObjectID'
+    additionalProperties: false
+  x-any:
+    properties: {}
+  ObjectID:
+    type: string
+    pattern: '^[a-fA-F\d]{24}$'
+basePath: /api
+swagger: '2.0'
+info:
+  x-ibm-name: upload-to-s3-with-loopback-3
+  version: 1.0.0
+  title: upload-to-s3-with-loopback-3
+schemes:
+  - https
+host: $(catalog.host)
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  clientSecretHeader:
+    in: header
+    name: X-IBM-Client-Secret
+    type: apiKey
+security:
+  - clientIdHeader: []
+    clientSecretHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4001'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)
