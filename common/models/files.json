@@ -58,10 +58,21 @@
     "download": {
       "accepts": [
         {
-          "arg": "filekey",
-          "type": "string",
+          "arg": "req",
+          "type": "object",
           "required": true,
-          "description": "The file key from AWS S3 Bucket."
+          "description": "Resquest Object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "description": "Response Object",
+          "http": {
+            "source": "res"
+          }
         }
       ],
       "returns": [

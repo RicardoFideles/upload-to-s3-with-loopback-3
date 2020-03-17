@@ -121,7 +121,7 @@ module.exports = function(Files) {
    * @param {Function(Error)} callback
    */
 
-  Files.download = function(filekey, callback) {
+  Files.download = function(req, res, callback) {
     try {
       let filter = null;
       if (req.query && req.query.filter) {
@@ -136,9 +136,9 @@ module.exports = function(Files) {
       res.attachment(filter.key);
       var fileStream = s3.getObject(options).createReadStream();
       fileStream.pipe(res);
-
+      return;
     } catch (error) {
-      callback(null);
+      callback(error);
     }
   };
 
