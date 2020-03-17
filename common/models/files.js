@@ -4,6 +4,22 @@ const AWS = require('aws-sdk');
 const { join, extname } = require('path');
 const { readFileSync } = require('fs');
 const ObjectId = require('mongodb').ObjectID;
+const BUCKET_NAME = 's3-upload'
+
+let s3 = null;
+
+if (process.env.NODE_ENV == "local") {
+  s3 = new AWS.S3({
+    accessKeyId: process.env.minio_accessKeyId, //9AL2P2T1EII4V5JA4J9S
+    secretAccessKey: process.env.minio_secretAccessKey, //D687Or68B5GOXskaBkdjxTkQunQfRTcYLGzjpVwK
+    endpoint: process.env.minio_endpoint, //http://192.168.1.107:9000
+    s3ForcePathStyle: true,
+    signatureVersion: 'v4'
+  });
+} else {
+  s3 = new AWS.S3();
+}
+
 
 module.exports = function(Files) {
 
