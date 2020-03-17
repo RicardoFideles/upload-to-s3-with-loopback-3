@@ -122,8 +122,24 @@ module.exports = function(Files) {
    */
 
   Files.download = function(filekey, callback) {
-    // TODO
-    callback(null);
+    try {
+      let filter = null;
+      if (req.query && req.query.filter) {
+        filter = JSON.parse(req.query.filter);
+      }
+
+      var options = {
+        Bucket: BUCKET_NAME,
+        Key: filter.key,
+      };
+
+      res.attachment(filter.key);
+      var fileStream = s3.getObject(options).createReadStream();
+      fileStream.pipe(res);
+
+    } catch (error) {
+      callback(null);
+    }
   };
 
 };
