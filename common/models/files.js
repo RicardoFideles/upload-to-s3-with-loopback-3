@@ -5,14 +5,15 @@ const { join, extname } = require('path');
 const { readFileSync } = require('fs');
 const ObjectId = require('mongodb').ObjectID;
 const BUCKET_NAME = 's3-upload'
+const multiparty = require('multiparty');
 
 let s3 = null;
 
 if (process.env.NODE_ENV == "local") {
   s3 = new AWS.S3({
-    accessKeyId: process.env.minio_accessKeyId, //9AL2P2T1EII4V5JA4J9S
-    secretAccessKey: process.env.minio_secretAccessKey, //D687Or68B5GOXskaBkdjxTkQunQfRTcYLGzjpVwK
-    endpoint: process.env.minio_endpoint, //http://192.168.1.107:9000
+    accessKeyId: process.env.minio_accessKeyId, 
+    secretAccessKey: process.env.minio_secretAccessKey,
+    endpoint: process.env.minio_endpoint,
     s3ForcePathStyle: true,
     signatureVersion: 'v4'
   });
@@ -65,35 +66,19 @@ module.exports = function(Files) {
     });
   };
 
-
-  const updateFile = async (Files, id, data) => {
-    try {
-      const filesCollection = Files.dataSource.adapter.collection(Files.modelName);
-      let fileModel = await filesCollection.findOne({ _id: ObjectId(id) });
-      if (fileModel) {      
-        const retorno = await filesCollection.updateOne({ _id: ObjectId(ticketId) }, { data });
-        Promise.resolve(retorno);
-      } else {
-        Promise.reject('error')
-      }
-    } catch (error) {
-      Promise.reject(error)
-    }
-  }
-
   /**
    * Upload Helper.
    * @param {Object} Files - Loopback Model
    * @param {String} id - File ID
    * @param {Request} req - Request.
    */
-  const uploadManager = async (Files, id, req) => {
+  const uploadManager = async (Files, req) => {
 
     try {
       const fileData = await getFileFromRequest(req);
       const itemUploaded = await uploadFileToS3(fileData);
-      const updatedFile = await updateFile(Files, id, itemUploaded);
-      Promise.resolve(updatedFile);
+      const createdFile = await Files.create(itemUploaded);
+      Promise.resolve(createdFile);
     } catch (error) {
       Promise.reject(error);
     }
@@ -105,11 +90,9 @@ module.exports = function(Files) {
    * Method for upload files to AWS S3 bucket.
    * @param {Function(Error)} callback
    */
-  Files.upload = function(id, req, callback) {
+  Files.upload = function(req, callback) {
 
-    if (!id) throw new Error('File not found.');
-
-    uploadManager(Files, id, req).then((res) => {
+    uploadManager(Files, req).then((res) => {
       callback(null, res);
     }).catch((error) => {
       callback(error);

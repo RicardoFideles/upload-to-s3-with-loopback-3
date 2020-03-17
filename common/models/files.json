@@ -24,12 +24,6 @@
     "upload": {
       "accepts": [
         {
-          "arg": "id",
-          "type": "string",
-          "required": true,
-          "description": "ID of File Object."
-        },
-        {
           "arg": "req",
           "type": "object",
           "required": true,
@@ -50,7 +44,7 @@
       "description": "Method for upload files to AWS S3 bucket.",
       "http": [
         {
-          "path": "/upload/:id",
+          "path": "/upload",
           "verb": "post"
         }
       ]
@@ -86,8 +80,8 @@
       "description": "Method for download files from AWS S3 bucket.",
       "http": [
         {
-          "path": "/download/:filekey",
-          "verb": "post"
+          "path": "/download",
+          "verb": "get"
         }
       ]
     }
